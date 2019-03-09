@@ -1,0 +1,21 @@
+{
+  "id" : 567,
+  "name" : "Maria Kovosi",
+  "email" : "maria@example.com",
+  "phone" : "+12 785 4895 321",
+  "age" : 29,
+  "projects" : [ "Path Finder App", "Push Notifications" ],
+  "address" : {
+    "street" : "Karchstr.",
+    "city" : "Hanover",
+    "zipcode" : 66525,
+    "country" : "Germany"
+  },
+  "paymentMethods" : [ "PayPal", "SOFORT" ],
+  "profileInfo" : {
+    "income" : "120,000 EURO",
+    "gender" : "female",
+    "source" : "Google Search",
+    "married" : "No"
+  }
+}
