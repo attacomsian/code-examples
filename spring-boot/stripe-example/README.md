@@ -1,4 +1,4 @@
-# Spring integration in Spring Boot
+# Spring integration with Spring Boot
 
 Example of Stripe payments integration with Spring Boot.
 
