@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Spring Boot File Upload Example</h1>
+
+<hr/>
+
+<h4>Upload Single File:</h4>
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload-file}">
+    <input type="file" name="file"> <br/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+<hr/>
+
+<h4>Upload Multiple Files:</h4>
+<form method="POST" enctype="multipart/form-data" th:action="@{/upload-multiple-files}">
+    <input type="file" name="files" multiple> <br/><br/>
+    <button type="submit">Submit</button>
+</form>
+
+<hr/>
+
+<h2>All Uploaded Files:</h2>
+<ul>
+    <li th:each="file : ${files}">
+        <a th:href="${file}" target="_blank" th:text="${file}"></a>
+    </li>
+</ul>
+
+</body>
+</html>
