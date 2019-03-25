@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Anchor Links Example JavaScript</title>
+    <style>
+        body {
+            font-family: "Andale Mono";
+            margin: 0 auto;
+            max-width: 800px;
+            padding: 50px auto;
+        }
+
+        .post-content p {
+            font-size: 1.1rem;
+            line-height: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /*Anchor Links CSS*/
+        .anchor-heading .anchor-link {
+            display: inline-block;
+            padding-left: .25rem;
+            text-decoration: none;
+            opacity: 0;
+            transition: opacity ease-in-out .25s;
+        }
+
+        .anchor-heading .anchor-link:hover {
+            opacity: 1 !important;
+        }
+
+        .anchor-heading:hover .anchor-link {
+            opacity: .5;
+        }
+    </style>
+
+    <!--Custom JavaScript-->
+    <script>
+        window.onload = function () {
+
+            //add anchor link to all headings
+            document.querySelectorAll('.post-content h1, .post-content h2, .post-content h3, .post-content h4').forEach($heading => {
+
+                //create id from heading text
+                var id = $heading.getAttribute("id") || $heading.innerText.toLowerCase().replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '').replace(/ +/g, '-');
+
+                //add id to heading
+                $heading.setAttribute('id', id);
+
+                //append parent class to heading
+                $heading.classList.add('anchor-heading');
+
+                //create anchor
+                $anchor = document.createElement('a');
+                $anchor.className = 'anchor-link';
+                $anchor.href = '#' + id;
+                $anchor.innerText = '#';
+
+                //append anchor link after heading text
+                $heading.appendChild($anchor);
+            });
+
+            //add smooth scroll for anchor links
+            document.querySelectorAll('a.anchor-link').forEach($anchor => {
+                $anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start' //scroll to top of the target element
+                    });
+                });
+            });
+
+            //navigate to anchor if available
+            if (window.location.hash.length > 0) {
+                setTimeout(function () {
+                    document.querySelector('a[href="' + window.location.hash + '"]').click();
+                }, 150);
+            }
+        };
+    </script>
+</head>
+<body>
+
+<h1>15 ways food processors are completely overrated</h1>
+<time>24 March, 2019</time>
+
+<div class="post-content">
+    <h2>Introduction</h2>
+
+    <p>How delicious magazines make you a better lover. How breakfast ideas can make you sick. 11 movies with
+        unbelievable scenes about breakfast ideas. 16 uses for thai restaurants. What the world would be like if dish
+        reviews didn't exist. 20 ways fast food is completely overrated. Why delicious food will change your life. 5
+        facts about food networks that will impress your friends. Why fast food is afraid of the truth. 6 things that
+        won't happen in chicken dishes.</p>
+
+    <h2>A Brief History</h2>
+
+    <p>How food processors can help you predict the future. How to start using breakfast casseroles. The complete
+        beginner's guide to cooking healthy food. How chef uniforms changed how we think about death. The only mexican
+        food resources you will ever need. Why food stamps beat peanut butter on pancakes. How twitter can teach you
+        about mexican food. What the beatles could learn from chefs. The evolution of dinner ideas. Ways your mother
+        lied to you about healthy snacks.</p>
+
+    <h3>Fast Food</h3>
+    <p>Will fast food ever rule the world? How to cheat at foodstuffs and get away with it. Expose: you're losing money
+        by not using snacks. 15 problems with easy meals. What the beatles could learn from delicious magazines.
+        Unbelievable minute meal success stories. If you read one article about chef uniforms read this one. How
+        foodstuffs aren't as bad as you think. The 9 best resources for cooking healthy food. Why your food processor
+        never works out the way you plan.</p>
+
+    <h3>Home Made Food</h3>
+
+    <p>Why dinner ideas will make you question everything. How to start using chefs. 8 great articles about healthy
+        snacks. Unbelievable restaurant success stories. The unconventional guide to healthy snacks. How food networks
+        changed how we think about death. The evolution of restaurant weeks. 6 problems with delicious food. The
+        evolution of breakfast casseroles. What the beatles could learn from healthy lunch ideas.</p>
+
+    <h2>Conclusion</h2>
+
+    <p>Why mom was right about healthy snacks. The 19 worst songs about delicious magazines. The 19 worst songs about
+        safe food handling tips. Why you shouldn't eat healthy snack in bed. How easy meals are making the world a
+        better place. What experts are saying about chicken dishes. Why safe food handling tips are the new black. 16
+        things about restaurants your kids don't want you to know. 11 movies with unbelievable scenes about food stamps.
+        Why your minute meal never works out the way you plan.</p>
+</div>
+</body>
+</html>
