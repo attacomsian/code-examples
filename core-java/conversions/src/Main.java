@@ -1,6 +1,7 @@
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class Main {
 
@@ -74,5 +75,13 @@ public class Main {
 
         String formatStr = dateFormat.format(date);
         System.out.println(formatStr);
+
+        //date to ISO 8601 string
+        TimeZone timeZone = TimeZone.getTimeZone("UTC");
+        SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        isoFormat.setTimeZone(timeZone);
+        String isoFormatStr = isoFormat.format(new Date());
+        System.out.println(isoFormatStr);
+
     }
 }
