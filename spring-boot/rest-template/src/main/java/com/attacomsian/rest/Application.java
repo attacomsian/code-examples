@@ -60,8 +60,11 @@ public class Application implements CommandLineRunner {
 //        System.out.println(restService.retrieveHeaders().getCacheControl());
 
 		// list allowed operations
-		for (HttpMethod method : restService.allowedOperations()) {
-			System.out.println(method.name());
-		}
+//		for (HttpMethod method : restService.allowedOperations()) {
+//			System.out.println(method.name());
+//		}
+
+		// get request with error handling
+        System.out.println(restService.unknownRequest());
     }
 }

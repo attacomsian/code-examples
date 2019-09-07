@@ -1,9 +1,11 @@
 package com.attacomsian.rest.services;
 
 import com.attacomsian.rest.models.Post;
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.Duration;
@@ -17,13 +19,13 @@ public class RestService {
 
     private final RestTemplate restTemplate;
 
-public RestService(RestTemplateBuilder restTemplateBuilder) {
-    // set connection and read timeouts
-    this.restTemplate = restTemplateBuilder
-            .setConnectTimeout(Duration.ofSeconds(500))
-            .setReadTimeout(Duration.ofSeconds(500))
-            .build();
-}
+    public RestService(RestTemplateBuilder restTemplateBuilder) {
+        // set connection and read timeouts
+        this.restTemplate = restTemplateBuilder
+                .setConnectTimeout(Duration.ofSeconds(500))
+                .setReadTimeout(Duration.ofSeconds(500))
+                .build();
+    }
 
     public String getPostsPlainJSON() {
         String url = "https://jsonplaceholder.typicode.com/posts";
@@ -196,6 +198,26 @@ public RestService(RestTemplateBuilder restTemplateBuilder) {
 
         // send HEAD request
         return this.restTemplate.optionsForAllow(url);
+    }
+
+    public String unknownRequest() {
+        try {
+            String url = "https://jsonplaceholder.typicode.com/404";
+            return this.restTemplate.getForObject(url, String.class);
+        } catch (HttpStatusCodeException ex) {
+            // raw http status code e.g `404`
+            System.out.println(ex.getRawStatusCode());
+            // http status code e.g. `404 NOT_FOUND`
+            System.out.println(ex.getStatusCode().toString());
+            // get response body
+            System.out.println(ex.getResponseBodyAsString());
+            // get http headers
+            HttpHeaders headers = ex.getResponseHeaders();
+            System.out.println(headers.get("Content-Type"));
+            System.out.println(headers.get("Server"));
+        }
+
+        return null;
     }
 }
 
