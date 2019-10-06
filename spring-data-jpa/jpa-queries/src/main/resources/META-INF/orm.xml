@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm
+        http://java.sun.com/xml/ns/persistence/orm_2_0.xsd ">
+
+    <!--find all books order by pages descending-->
+    <named-query name="Book.findAllXML">
+        <query>SELECT b FROM Book b ORDER BY b.pages DESC</query>
+    </named-query>
+
+    <!--find books by title-->
+    <named-query name="Book.findByTitleContainingXML">
+        <query>SELECT b FROM Book b WHERE b.title LIKE ?1</query>
+    </named-query>
+
+    <!--native SQL query to find a book by isbn-->
+    <named-native-query name="Book.findByIsbnNativeXML"
+                        result-class="com.attacomsian.jpa.named.domains.Book">
+        <query>SELECT * FROM book b WHERE b.isbn = :isbn</query>
+    </named-native-query>
+
+</entity-mappings>
