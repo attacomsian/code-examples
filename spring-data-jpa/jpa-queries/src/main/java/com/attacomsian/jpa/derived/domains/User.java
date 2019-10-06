@@ -1,4 +1,4 @@
-package com.attacomsian.jpa.domains;
+package com.attacomsian.jpa.derived.domains;
 
 import javax.persistence.*;
 import java.util.Date;
