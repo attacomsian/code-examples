@@ -1,5 +1,9 @@
 package com.attacomsian.jpa;
 
+import com.attacomsian.jpa.one2many.domains.Book;
+import com.attacomsian.jpa.one2many.domains.Page;
+import com.attacomsian.jpa.one2many.repositories.BookRepository;
+import com.attacomsian.jpa.one2many.repositories.PageRepository;
 import com.attacomsian.jpa.one2one.domains.Address;
 import com.attacomsian.jpa.one2one.domains.User;
 import com.attacomsian.jpa.one2one.repositories.AddressRepository;
@@ -17,26 +21,20 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner mappingDemo(UserRepository userRepository,
-                                         AddressRepository addressRepository) {
+    public CommandLineRunner mappingDemo(BookRepository bookRepository,
+                                         PageRepository pageRepository) {
         return args -> {
 
-            // create a user instance
-            User user = new User("John Doe", "john.doe@example.com", "1234abcd");
+            // create a new book
+            Book book = new Book("Java 101", "John Doe", "123456");
 
-            // create an address instance
-            Address address = new Address("Lake View 321", "Berlin", "Berlin",
-                    "95781", "DE");
+            // save the book
+            bookRepository.save(book);
 
-            // set child reference
-            address.setUser(user);
-
-            // set parent reference
-            user.setAddress(address);
-
-            // save the parent
-            // which will save the child (address) as well
-            userRepository.save(user);
+            // create and save new pages
+            pageRepository.save(new Page(1, "Introduction contents", "Introduction", book));
+            pageRepository.save(new Page(65, "Java 8 contents", "Java 8", book));
+            pageRepository.save(new Page(95, "Concurrency contents", "Concurrency", book));
         };
     }
 }
