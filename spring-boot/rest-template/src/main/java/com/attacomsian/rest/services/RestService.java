@@ -119,14 +119,7 @@ public class RestService {
         HttpEntity<Post> entity = new HttpEntity<>(post, headers);
 
         // send POST request
-        ResponseEntity<Post> response = this.restTemplate.postForEntity(url, entity, Post.class);
-
-        // check response status code
-        if (response.getStatusCode() == HttpStatus.CREATED) {
-            return response.getBody();
-        } else {
-            return null;
-        }
+        return restTemplate.postForObject(url, entity, Post.class);
     }
 
     public void updatePost() {
