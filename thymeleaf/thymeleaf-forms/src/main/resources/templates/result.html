@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container my-3">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+<h2>Result</h2>
+<div class="my-3">
+    <p><strong>ID:</strong> <span th:text="${project.id}"></span></p>
+    <p><strong>Title:</strong> <span th:text="${project.title}"></span></p>
+    <p><strong>Type:</strong> <span th:text="${project.type}"></span></p>
+    <p><strong>Color:</strong> <span th:text="${project.color}"></span></p>
+    <p><strong>Description:</strong> <span th:text="${project.description}"></span></p>
+    <p><strong>Days:</strong> <span th:text="${project.days}"></span></p>
+    <p><strong>Price:</strong> <span th:text="${project.price}"></span></p>
+    <p><strong>Featured:</strong> <span th:text="${project.featured} ? 'Yes' : 'No'"></span></p>
+    <p><strong>Launch Date:</strong> <span th:text="${project.launchDate}"></span></p>
+</div>
+<a th:href="@{/create-project}">Add new project</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
