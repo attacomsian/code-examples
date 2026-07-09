@@ -15,7 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.9",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "morgan": "^1.9.1"
   }
 }
