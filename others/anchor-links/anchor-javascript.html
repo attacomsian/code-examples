@@ -68,6 +68,7 @@
                         behavior: 'smooth',
                         block: 'start' //scroll to top of the target element
                     });
+                    window.location.hash = e.target.href.split('#')[1];
                 });
             });
 
